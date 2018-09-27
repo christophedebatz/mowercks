@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "buildOnSave": false,
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "preserveConstEnums": true,
+    "lib": [ "es6", "dom"]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "logs"
+  ]
+}

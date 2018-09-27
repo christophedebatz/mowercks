@@ -1,0 +1,22 @@
+{
+  "name": "mowercks",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.x"
+  },
+  "description": "Mowercks",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christophedebatz/mowercks.git"
+  },
+  "author": "Christophe de Batz Labs.",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.0.3"
+  }
+}
