@@ -1,9 +1,6 @@
 {
   "name": "mowercks",
   "version": "1.0.0",
-  "engines": {
-    "node": "8.x"
-  },
   "description": "Mowercks",
   "main": "dist/app.js",
   "scripts": {
@@ -18,5 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^10.11.2"
   }
 }

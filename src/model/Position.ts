@@ -2,12 +2,12 @@ export default class Position {
 
   private readonly _x: number;
   private readonly _y: number;
-  private readonly _angle: number;
+  private readonly _direction: Direction;
 
-  constructor (x: number, y: number, angle: number) {
+  constructor (x: number, y: number, direction: Direction) {
     this._x = x;
     this._y = y;
-    this._angle = angle;
+    this._direction = direction;
   }
 
   public get x () {
@@ -18,26 +18,29 @@ export default class Position {
     return this._y;
   }
 
-  public get angle (): number {
-    return this._angle;
+  public get direction (): Direction {
+    return this._direction;
   }
 
+  public toString (): string {
+    return `(X: ${this.x}, Y: ${this.y}, ${this.direction})`
+  }
 }
 
 export enum Instruction {
 
-  Left,
-  Right,
-  Forward
+  Left = 'left',
+  Right = 'right',
+  Forward = 'forward'
 
 }
 
 export enum Direction {
 
-  North,
-  East,
-  West,
-  South
+  North = 'N',
+  East = 'E',
+  West = 'W',
+  South = 'S'
 
 }
 
@@ -59,14 +62,6 @@ export class PositionHelper {
       case 'R': return Instruction.Right;
       case 'F': return Instruction.Forward;
       default: throw new Error('invalid.instruction.format');
-    }
-  }
-
-  public static computeInstruction (position: Position, instruction: Instruction): Position {
-    if (instruction === Instruction.Left) {
-      switch (position) {
-        case
-      }
     }
   }
 
