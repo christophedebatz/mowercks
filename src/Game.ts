@@ -3,6 +3,7 @@ import Lawn from './model/Lawn';
 import Position, { Instruction } from './model/Position';
 import IMoveableObject from './interfaces/IMoveableObject';
 import GameConfigReader from './GameConfigReader';
+import IMap from './interfaces/IMap';
 
 export default class Game {
 
@@ -22,8 +23,9 @@ export default class Game {
     reader.on('instruction', this.executeInstruction);
   }
 
-  private initializeMap (width: number, height: number): void {
+  private initializeMap (width: number, height: number): IMap {
     this._lawn = new Lawn(width, height);
+    return this._lawn;
   }
 
   private addMoveableObject (id: number, position: Position): IMoveableObject {

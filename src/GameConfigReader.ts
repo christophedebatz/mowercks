@@ -1,12 +1,13 @@
 import { readFileSync } from 'fs';
 import Position, { Instruction, PositionHelper } from './model/Position';
 import IMoveableObject from './interfaces/IMoveableObject';
+import IMap from './interfaces/IMap';
 
 export default class GameConfigReader {
 
   private readonly _file: string;
   private _hasBeenRead: boolean = false;
-  private _onMapSize: (width: number, height: number) => void;
+  private _onMapSize: (width: number, height: number) => IMap;
   private _onMoveableObject: (index: number, position: Position) => IMoveableObject;
   private _onInstruction: (index: number, instruction: Instruction, isLast: boolean) => void;
 
@@ -34,6 +35,7 @@ export default class GameConfigReader {
     const lines: string[] = GameConfigReader.getConfigLines(this._file);
     let moveableObjectsCount: number = 0;
     let currentMoveableObject: IMoveableObject = null;
+    let currentMap: IMap = null;
     for (let i = 0; i < lines.length; i++) {
       const currentLine: string = lines[i];
       if (i === 0) {
@@ -42,7 +44,7 @@ export default class GameConfigReader {
           throw new Error('invalid.config.format[sizes]');
         }
         if (this._onMapSize) {
-          this._onMapSize(parseInt(sizes[0], 10), parseInt(sizes[1], 10));
+          currentMap = this._onMapSize(parseInt(sizes[0], 10), parseInt(sizes[1], 10));
         }
       } else if (( i + 1 ) % 2 === 0) {
         const positions: string[] = currentLine.split(' ');
@@ -54,6 +56,9 @@ export default class GameConfigReader {
           parseInt(positions[1], 10),
           PositionHelper.mapDirection(positions[2])
         );
+        if (currentMap && !currentMap.intersectMap(position)) {
+          throw new Error('out.of.map.coordinates[objects]');
+        }
         if (this._onMoveableObject) {
           currentMoveableObject = this._onMoveableObject(++moveableObjectsCount, position);
         }

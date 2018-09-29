@@ -7,7 +7,7 @@ class Mowercks {
     try {
       new Game().play(file);
     } catch (e) {
-      console.error(`An error occured, error message is ${e.message}`);
+      console.error(`An error occured, error code is "${e.message}"`);
     }
   }
 
