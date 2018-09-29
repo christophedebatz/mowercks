@@ -4,7 +4,11 @@ import * as path from 'path';
 class Mowercks {
 
   public static main (file: string): void {
-    new Game().play(file);
+    try {
+      new Game().play(file);
+    } catch (e) {
+      console.error(`An error occured, error message is ${e.message}`);
+    }
   }
 
 }
