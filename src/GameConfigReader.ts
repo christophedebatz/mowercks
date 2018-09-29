@@ -30,7 +30,7 @@ export default class GameConfigReader {
     }
   }
 
-  public read (): void {
+  private read (): void {
     const lines: string[] = GameConfigReader.getConfigLines(this._file);
     let moveableObjectsCount: number = 0;
     let currentMoveableObject: IMoveableObject = null;
